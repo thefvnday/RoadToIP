@@ -40,21 +40,21 @@ import 'dart:core';
 //     }}
 // }
 
-// void main(List<String> arguments){
-//   print("Reverse Words");
-//   print('Masukkan Kalimat :');
-//   var reversed = [];
-//   String words =  stdin.readLineSync();
-//   String hasil;
-//    var reverse = words.split(' ');
-//    reverse.forEach((element) {
-//      reversed.add(element.split('').reversed.join(''));
-//    });
-//   hasil = reversed.join(' ');
+void main(List<String> arguments){
+  print("Reverse Words");
+  print('Masukkan Kalimat :');
+  var reversed = [];
+  String words =  stdin.readLineSync();
+  String hasil;
+   var reverse = words.split(' ');
+   reverse.forEach((element) {
+     reversed.add(element.split('').reversed.join(''));
+   });
+  hasil = reversed.join(' ');
 
-//   print("Hasil :");
-//   print(hasil);
-// }
+  print("Hasil :");
+  print(hasil);
+}
 
 
 
