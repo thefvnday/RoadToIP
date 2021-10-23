@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+import 'package:todolist/Screens/Home/home_screens.dart';
+import 'package:todolist/utils/google_signin.dart';
 
 class Body extends StatelessWidget {
-  
   const Body({Key? key}) : super(key: key);
 
   @override
@@ -41,7 +43,19 @@ class Body extends StatelessWidget {
                   text: 'Sign in with Email',
                   fontSize: 16,
                   icon: Icons.email,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return HomeScreen();
+                        },
+                      ),
+                    );
+                    // final provider = Provider.of<GoogleSignInProvider>(context,
+                    //     listen: false);
+                    // provider.googleLogin();
+                  },
                   backgroundColor: Colors.blueGrey[700]!,
                 )
               ],
@@ -52,5 +66,3 @@ class Body extends StatelessWidget {
     );
   }
 }
-
-
