@@ -1,9 +1,14 @@
+import 'package:date_picker_timeline/date_picker_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:todolist/Screens/Home/components/getstarted_card.dart';
 import 'package:todolist/Screens/Home/components/img_header.dart';
 import 'package:todolist/Screens/Home/components/task_card_widget.dart';
 import 'package:todolist/Screens/Home/components/text_header.dart';
 import 'package:todolist/Screens/TaskScreen/task_screen.dart';
+import 'package:todolist/components/datenow.dart';
+
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -13,14 +18,23 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  int _selectedNavbar = 0;
+  
+
+
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Future<void> showInformationDialog(BuildContext context) async {
+    
     return await showDialog(
         context: context,
         builder: (context) {
           final TextEditingController _textEditingController =
               TextEditingController();
+          final TextEditingController _textEditingController2 =
+              TextEditingController();
+          DateTime _dateTime;
+
           bool isChecked = false;
           return StatefulBuilder(builder: (context, setState) {
             return AlertDialog(
@@ -34,27 +48,35 @@ class _BodyState extends State<Body> {
                         validator: (value) {
                           return value!.isNotEmpty ? null : "Invalid Field";
                         },
-                        decoration:
-                            InputDecoration(hintText: "Enter Some Text"),
+                        decoration: InputDecoration(hintText: "Title"),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text("Choice Box"),
-                          Checkbox(
-                              value: isChecked,
-                              onChanged: (checked) {
-                                setState((){
-                                  isChecked = checked!;
-                                }) ;
-                              })
-                        ],
-                      )
+                      TextFormField(
+                        controller: _textEditingController2,
+                        validator: (value) {
+                          return value!.isNotEmpty ? null : "Invalid Field";
+                        },
+                        decoration:
+                            InputDecoration(hintText: "Enter Some Text "),
+                      ),
+
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //   children: [
+                      //     Text("Choice Box"),
+                      //     Checkbox(
+                      //         value: isChecked,
+                      //         onChanged: (checked) {
+                      //           setState((){
+                      //             isChecked = checked!;
+                      //           }) ;
+                      //         })
+                      //   ],
+                      // )
                     ],
                   )),
               actions: <Widget>[
                 TextButton(
-                  child: Text('Noted'),
+                  child: Text('Add'),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       Navigator.of(context).pop();
@@ -69,8 +91,9 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
-      backgroundColor: Colors.black26,
+      backgroundColor: Colors.white10,
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -79,12 +102,13 @@ class _BodyState extends State<Body> {
             SizedBox(
               height: 7,
             ),
+            
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Container(
-                color: Colors.white,
-                height: 70,
-                padding: EdgeInsets.only(left: 10, top: 10, bottom: 10),
+                color: Colors.white54,
+                height: 80,
+                padding: EdgeInsets.only(left: 10, ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
@@ -96,14 +120,34 @@ class _BodyState extends State<Body> {
                     ),
                     TextHeader(
                       TextName: 'Fandy Ahmad Irianto',
-                      TextNotif: '2 Tugas Tersisa',
+                      TextNotif: '4 Tugas Tersisa',
                     ),
                   ],
                 ),
               ),
             ),
+            DateNow(),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 24),
+              child: DatePicker(
+                DateTime.now(),
+                height: 80,
+                width: 60,
+                initialSelectedDate: DateTime.now(),
+                selectionColor: Colors.purple,
+                selectedTextColor: Colors.white,
+                dateTextStyle: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.grey
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 5,
+            ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 6),
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 7),
               child: SafeArea(
                 child: Container(
                   width: double.infinity,
@@ -113,18 +157,23 @@ class _BodyState extends State<Body> {
                       Column(
                         children: [
                           GetStartedCard(
-                              title1: 'GetStarted!',
+                              title1: 'Daily Acivity!',
                               note1:
                                   'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.'),
                           TaskCardWidget(
-                            title: 'Daily Stand Up',
-                            note: 'Makan makan',
-                            date: 'Minggu, 24 Juli 2010',
+                            title: 'Madang',
+                            note: 'Makan Makan',
+                            date: 'Minggu, 24 Oktober 2021',
                           ),
                           TaskCardWidget(
-                            title: 'Daily Stand Up',
-                            note: 'Makan makan',
-                            date: 'Minggu, 24 Juli 2010',
+                            title: 'Ngising',
+                            note: 'Ngising Ngising',
+                            date: 'Minggu, 24 Oktober 2021',
+                          ),
+                          TaskCardWidget(
+                            title: 'Turu',
+                            note: 'Capex',
+                            date: 'Minggu, 24 Oktober 2021',
                           ),
                         ],
                       )
@@ -133,10 +182,8 @@ class _BodyState extends State<Body> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 20,
-            ),
             Container(
+              
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
@@ -196,6 +243,32 @@ class _BodyState extends State<Body> {
           ],
         ),
       ),
+      
+      // bottomNavigationBar: BottomNavigationBar(
+      //   items: const <BottomNavigationBarItem>[
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.task),
+      //       title: Text('Task'),
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.add),
+      //       title: Text('Add'),
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.settings),
+      //       title: Text('Setting'),
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.person),
+      //       title: Text('Akun'),
+      //     ),
+      //   ],
+      //   // currentIndex: _selectedNavbar,
+      //   selectedItemColor: Colors.purple,
+      //   unselectedItemColor: Colors.grey,
+      //   showUnselectedLabels: true,
+      //   // onTap: _changeSelectedNavBar,
+      // ),
     );
   }
 }

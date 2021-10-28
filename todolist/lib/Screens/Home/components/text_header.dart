@@ -11,27 +11,30 @@ class TextHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          TextName,
-          style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-              color: Colors.black),
-        ),
-        SizedBox(
-          height: 7,
-        ),
-        Text(
-          TextNotif,
-          style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.orange),
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.only(top: 15),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            TextName,
+            style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+                color: Colors.black),
+          ),
+          SizedBox(
+            height: 7,
+          ),
+          Text(
+            TextNotif,
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.orange),
+          ),
+        ],
+      ),
     );
   }
 }

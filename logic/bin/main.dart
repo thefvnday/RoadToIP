@@ -40,22 +40,38 @@ import 'dart:core';
 //     }}
 // }
 
-void main(List<String> arguments){
-  print("Reverse Words");
-  print('Masukkan Kalimat :');
-  var reversed = [];
-  String words =  stdin.readLineSync();
-  String hasil;
-   var reverse = words.split(' ');
-   reverse.forEach((element) {
-     reversed.add(element.split('').reversed.join(''));
-   });
-  hasil = reversed.join(' ');
+// 
 
-  print("Hasil :");
-  print(hasil);
-}
 
+// void main(List<String> arguments) {
+//   print("Masukkan Kalimat");
+//   String words = stdin.readLineSync();
+//   List splitWord = words.split(' ');
+
+//   for (int i = 0; i < splitWord.length; i++) {
+//     String element = splitWord[i];
+//     String firstChar = element[0];
+//     String isFirstCharCapital = element[0].toUpperCase();
+//     if (firstChar == isFirstCharCapital) {
+//       element = element.toLowerCase();
+//       element = element.split('').reversed.join('');
+//       element = element[0].toUpperCase() + element.substring(1);
+//     }else{
+//        element = element.split('').reversed.join('');
+//     }
+//     splitWord[i] = element;
+//     // if(firstChar == isFirstCharCapital)
+//   }
+//   String hasil = splitWord[0];
+//   for (int i = 1; i < splitWord.length; i++) {
+//     hasil = hasil + " " + splitWord[i];
+//   }
+
+//   // print("Kalimat :");
+//   // print(words);
+//   print("Hasil :");
+//   print(hasil);
+// }
 
 
 // void main(List<String> arguments) {
@@ -119,7 +135,38 @@ void main(List<String> arguments){
 // }
 
 
+void main(List<String> arguments){
+  print("Reverse Words");
+  print('Masukkan Kalimat :');
+  String words  =  stdin.readLineSync();
+  var splitWords = words.split(" ");
+  var hasil = [];
+  
+  splitWords.forEach((element) {
+    var reversedWord = element.toLowerCase().split(" ").reversed;
+    // element= element.split("") as String;
+    // for(var i=0;i<element.length; i++)
+    // {
+    //   // if(element[i]==element[i].toUpperCase()) 
+    //   // reversedWord[i] =reversedWord[i].toUpperCase();
+    // }
+    // hasil.reversed.join('');
+    print(reversedWord);
+  });
 
+  // var reversed = [];
+  // String words =  stdin.readLineSync();
+  // String hasil;
+  //  var reverse = words.split(' ');
+  //  reverse.forEach((element) {
+  //    reversed.add(element.split('').reversed.join(''));
+  //  });
+  // hasil = reversed.join(' ');
+
+  // print("Hasil :");
+  // print(hasil);
+
+}
 
 
 

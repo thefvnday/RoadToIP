@@ -2,6 +2,9 @@ import 'dart:convert';
 
 import 'dart:developer';
 
+import 'package:intl/intl.dart';
+
+
 void main(List<String> arguments) {
  final List<Map<String,dynamic>> _listOfJson =[
     {
@@ -103,13 +106,15 @@ print("3. Find all the furniture");
 
 print("");
 print("4. Find all items were purchased on 16 Januari 2020");
-//  for(final Map<String,dynamic> item in _listOfJson){
-//    final _date=DateTime.fromMillisecondsSinceEpoch(item['purchased_at']*1000);
-//   if (DateFormat('DD LLLL YYYY','id').format(_date)=='16 Januari 2021')[
-//     print(item['name']);
-//   ]
-//  }
-//  }
+
+ for (final Map<String, dynamic> item in _listOfJson) {
+    final _date =
+        DateTime.fromMillisecondsSinceEpoch(item['purchased_at'] * 1000);
+    if (DateFormat('dd LLLL yyyy', 'id_ID').format(_date) ==
+        '16 Januari 2020') {
+      log(item['name']);
+    }
+  }
 
 
 print("");

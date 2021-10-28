@@ -12,8 +12,8 @@ class GetStartedCard extends StatelessWidget {
       child: Container(
         
           padding: EdgeInsets.symmetric(
-            vertical: 20,
-            horizontal: 20,
+            vertical: 10,
+            horizontal: 7,
           ),
           decoration: BoxDecoration(
             color: Colors.white,
